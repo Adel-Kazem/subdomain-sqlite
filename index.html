@@ -1,1 +1,79 @@
-<!DOCTYPE html><html><head><title>sqlite.revunova.net</title></head><body><h1>Welcome to sqlite.revunova.net</h1><p>Site created with Laravel GitHub Pages Automation</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- SQL.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+<div class="container mx-auto px-4 py-8" x-data="productApp()">
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold text-center text-indigo-700">Product Catalog</h1>
+        <p class="text-center text-gray-600 mt-2">Browse our amazing products</p>
+        <div class="flex justify-end mt-4">
+            <a href="admin.html" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
+                Admin Panel
+            </a>
+        </div>
+    </header>
+
+    <!-- Loading state -->
+    <div x-show="loading" class="flex justify-center items-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+    </div>
+
+    <!-- Error state -->
+    <div x-show="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline" x-text="error"></span>
+    </div>
+
+    <!-- Products section -->
+    <div x-show="!loading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <template x-for="product in products" :key="product.id">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                    <img
+                            x-bind:src="product.image || 'https://via.placeholder.com/300x200'"
+                            x-bind:alt="product.name"
+                            class="object-cover h-full w-full"
+                    >
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800" x-text="product.name"></h2>
+                    <p class="text-gray-600 mt-2" x-text="product.description"></p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-indigo-600 font-bold" x-text="'$' + product.price.toFixed(2)"></span>
+                        <span class="text-sm text-gray-500" x-text="product.category"></span>
+                    </div>
+                    <div class="mt-4">
+                            <span
+                                    class="inline-block px-2 py-1 text-xs font-semibold rounded"
+                                    x-bind:class="product.stock > 10 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'"
+                                    x-text="product.stock > 0 ? `In Stock (${product.stock})` : 'Out of Stock'"
+                            ></span>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <!-- Empty state -->
+    <div x-show="!loading && !error && products.length === 0" class="text-center py-12">
+        <p class="text-gray-500 text-lg">No products found. Add some in the admin panel!</p>
+    </div>
+</div>
+
+<!-- Database and App logic -->
+<script src="js/database.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
