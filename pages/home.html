@@ -1,0 +1,239 @@
+<!-- pages/home.html - Home Page Template -->
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, #000 2px, transparent 2px); background-size: 50px 50px;"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div class="space-y-8">
+            <!-- Main Headline -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-primary tracking-tight">
+                <span class="block">GreenLion</span>
+                <span class="block text-2xl md:text-4xl lg:text-5xl font-light text-gray-600 mt-4">
+                    Premium Electronics
+                </span>
+            </h1>
+            <!-- Hero Description -->
+            <p class="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
+                Discover our curated collection of mobile accessories, smart gadgets, grooming tools, and innovative home appliances designed for the modern lifestyle.
+            </p>
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
+                <a href="#products" class="bg-primary text-white px-8 py-4 text-lg font-medium hover:bg-primary-hover transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Explore Collection
+                </a>
+                <button @click="$store.ui.openWhatsApp('Hello! I would like to learn more about GreenLion products.')" class="border-2 border-primary text-primary px-8 py-4 text-lg font-medium hover:bg-primary hover:text-white transition-all duration-300">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+            <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Categories Section -->
+<section id="featured-categories" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Our Categories</h2>
+            <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">
+                From mobile accessories to smart home devices, discover everything you need to enhance your digital lifestyle.
+            </p>
+        </div>
+        <!-- Categories Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Mobile Accessories -->
+            <div class="group cursor-pointer">
+                <a href="#products/mobile-accessories" class="block">
+                    <div class="relative overflow-hidden bg-gray-100 aspect-square mb-6 group-hover:scale-105 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile Accessories" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-2 group-hover:text-primary-hover transition-colors">Mobile Accessories</h3>
+                    <p class="text-gray-600 font-light">Chargers, cables, power banks, and protective cases</p>
+                </a>
+            </div>
+            <!-- Smart Gadgets -->
+            <div class="group cursor-pointer">
+                <a href="#products/smart-gadgets" class="block">
+                    <div class="relative overflow-hidden bg-gray-100 aspect-square mb-6 group-hover:scale-105 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smart Gadgets" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-2 group-hover:text-primary-hover transition-colors">Smart Gadgets</h3>
+                    <p class="text-gray-600 font-light">Wireless audio, smart speakers, and innovative tech</p>
+                </a>
+            </div>
+            <!-- Grooming Tools -->
+            <div class="group cursor-pointer">
+                <a href="#products/grooming-tools" class="block">
+                    <div class="relative overflow-hidden bg-gray-100 aspect-square mb-6 group-hover:scale-105 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grooming Tools" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-2 group-hover:text-primary-hover transition-colors">Grooming Tools</h3>
+                    <p class="text-gray-600 font-light">Hair clippers, trimmers, and personal care essentials</p>
+                </a>
+            </div>
+            <!-- Home Appliances -->
+            <div class="group cursor-pointer">
+                <a href="#products/home-appliances" class="block">
+                    <div class="relative overflow-hidden bg-gray-100 aspect-square mb-6 group-hover:scale-105 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smart Home Appliances" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-2 group-hover:text-primary-hover transition-colors">Home Appliances</h3>
+                    <p class="text-gray-600 font-light">Smart cameras, digital frames, and home automation</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section id="featured-products" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Featured Products</h2>
+            <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">
+                Carefully selected products that combine innovative technology with exceptional quality and design.
+            </p>
+        </div>
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" x-data="featuredProducts">
+            <template x-for="product in products" :key="product.id">
+                <div class="bg-white shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-square">
+                        <img :src="Array.isArray(product.images) ? product.images[0] : product.images" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                        <!-- Quick Actions -->
+                        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button @click="$store.ui.openWhatsApp(`Hello! I'm interested in the ${product.name}. Could you provide more information?`)" class="bg-white p-2 shadow-md hover:bg-gray-50 transition-colors">
+                                <svg class="h-5 w-5">
+                                    <use xlink:href="#icon-whatsapp"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-primary mb-2 group-hover:text-primary-hover transition-colors" x-text="product.name"></h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-primary" x-text="'$' + (product.base_price || product.price).toFixed(2)"></span>
+                            <a :href="'#product/' + product.slug" class="text-primary hover:text-primary-hover font-medium transition-colors">
+                                View Details →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <!-- View All Products CTA -->
+        <div class="text-center mt-12">
+            <a href="#products" class="inline-block bg-primary text-white px-8 py-4 text-lg font-medium hover:bg-primary-hover transition-all duration-300 transform hover:scale-105">
+                View All Products
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Content -->
+            <div class="space-y-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary">About GreenLion</h2>
+                <p class="text-xl text-gray-600 font-light leading-relaxed">
+                    We are Lebanon's premier destination for cutting-edge consumer electronics and smart gadgets. Our carefully curated collection features the latest in mobile accessories, innovative smart devices, premium grooming tools, and advanced home appliances.
+                </p>
+                <p class="text-lg text-gray-600 font-light leading-relaxed">
+                    At GreenLion, we believe technology should enhance your daily life. That's why we select only the highest quality products from trusted brands, ensuring every purchase delivers exceptional value and performance.
+                </p>
+                <!-- Features -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mt-1">
+                            <svg class="h-4 w-4 text-white">
+                                <use xlink:href="#icon-check"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary mb-1">Premium Quality</h4>
+                            <p class="text-gray-600 font-light">Carefully selected products from trusted brands</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mt-1">
+                            <svg class="h-4 w-4 text-white">
+                                <use xlink:href="#icon-check"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary mb-1">Expert Support</h4>
+                            <p class="text-gray-600 font-light">Dedicated customer service via WhatsApp</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mt-1">
+                            <svg class="h-4 w-4 text-white">
+                                <use xlink:href="#icon-check"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary mb-1">Fast Delivery</h4>
+                            <p class="text-gray-600 font-light">Quick shipping across Lebanon</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mt-1">
+                            <svg class="h-4 w-4 text-white">
+                                <use xlink:href="#icon-check"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary mb-1">Warranty Protection</h4>
+                            <p class="text-gray-600 font-light">Comprehensive warranty on all products</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Image -->
+            <div class="relative">
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern electronics store" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary opacity-10"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-primary text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Upgrade Your Tech?</h2>
+        <p class="text-xl font-light mb-8 opacity-90">
+            Discover the latest in consumer electronics and smart gadgets. Contact us via WhatsApp for personalized recommendations and exclusive deals.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button @click="$store.ui.openWhatsApp('Hello GreenLion! I would like to explore your product collection and learn about current offers.')" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
+                <svg class="h-6 w-6">
+                    <use xlink:href="#icon-whatsapp"></use>
+                </svg>
+                <span>Chat on WhatsApp</span>
+            </button>
+            <a href="#products" class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-medium transition-all duration-300">
+                Browse Products
+            </a>
+        </div>
+    </div>
+</section>

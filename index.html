@@ -3,77 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Catalog</title>
-    <!-- TailwindCSS CDN -->
+    <title id="meta-title">GreenLion - Premium Consumer Electronics & Smart Gadgets in Lebanon</title>
+    <meta id="meta-description" name="description" content="Discover GreenLion's premium collection of mobile accessories, smart gadgets, grooming tools & home appliances. Free shipping in Lebanon. WhatsApp +96170608543">
+    <meta id="meta-keywords" name="keywords" content="mobile accessories, smart gadgets, phone chargers, power banks, wireless audio, grooming gadgets, smart home appliances, consumer electronics Lebanon, GreenLion">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="GreenLion - Premium Consumer Electronics & Smart Gadgets">
+    <meta property="og:description" content="Discover premium mobile accessories, smart gadgets, and home appliances in Lebanon">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://greenlion.com">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Store",
+            "name": "GreenLion",
+            "description": "Premium consumer electronics store specializing in mobile accessories, smart gadgets, grooming tools, and small home appliances",
+            "url": "https://greenlion.com",
+            "telephone": "+96170608543",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "LB",
+                "addressLocality": "Lebanon"
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            },
+            "priceRange": "$",
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "GreenLion Product Catalog",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Product",
+                            "name": "Mobile Accessories",
+                            "category": "Electronics"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Product",
+                            "name": "Smart Gadgets",
+                            "category": "Electronics"
+                        }
+                    }
+                ]
+            }
+        }
+    </script>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js CDN -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- SQL.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
-    <!-- Custom styles -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script src="js/tailwind.config.js"></script>
+
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
-<div class="container mx-auto px-4 py-8" x-data="productApp()">
-    <header class="mb-8">
-        <h1 class="text-3xl font-bold text-center text-indigo-700">Product Catalog</h1>
-        <p class="text-center text-gray-600 mt-2">Browse our amazing products</p>
-        <div class="flex justify-end mt-4">
-            <a href="admin.html" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
-                Admin Panel
-            </a>
-        </div>
-    </header>
+<body class="bg-gray-50 text-gray-900 antialiased"
+      x-data="spa"
+      x-init="init()"
+      @scroll.window="scrollTop = window.scrollY > 100"
+      x-cloak>
 
-    <!-- Loading state -->
-    <div x-show="loading" class="flex justify-center items-center py-12">
-        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
-    </div>
+<!-- SVG Sprite Definitions -->
+<div x-data="svgSprites" x-html="template"></div>
 
-    <!-- Error state -->
-    <div x-show="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">Error!</strong>
-        <span class="block sm:inline" x-text="error"></span>
-    </div>
+<!-- Navigation -->
+<div x-data="siteHeader({ activeLink: currentRoute })" x-html="template"></div>
 
-    <!-- Products section -->
-    <div x-show="!loading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <template x-for="product in products" :key="product.id">
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                <div class="h-48 bg-gray-200 flex items-center justify-center">
-                    <img
-                            x-bind:src="product.image || 'https://via.placeholder.com/300x200'"
-                            x-bind:alt="product.name"
-                            class="object-cover h-full w-full"
-                    >
-                </div>
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold text-gray-800" x-text="product.name"></h2>
-                    <p class="text-gray-600 mt-2" x-text="product.description"></p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-indigo-600 font-bold" x-text="'$' + product.price.toFixed(2)"></span>
-                        <span class="text-sm text-gray-500" x-text="product.category"></span>
-                    </div>
-                    <div class="mt-4">
-                            <span
-                                    class="inline-block px-2 py-1 text-xs font-semibold rounded"
-                                    x-bind:class="product.stock > 10 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'"
-                                    x-text="product.stock > 0 ? `In Stock (${product.stock})` : 'Out of Stock'"
-                            ></span>
-                    </div>
-                </div>
-            </div>
-        </template>
-    </div>
+<!-- Main Content Container -->
+<main id="spa-content" x-html="pageContent" class="min-h-screen">
+    <!-- Page content will be dynamically loaded here -->
+</main>
 
-    <!-- Empty state -->
-    <div x-show="!loading && !error && products.length === 0" class="text-center py-12">
-        <p class="text-gray-500 text-lg">No products found. Add some in the admin panel!</p>
+<!-- Footer -->
+<div x-data="siteFooter" x-html="template"></div>
+
+<!-- Floating Action Buttons -->
+<div x-data="floatingButtons" x-html="template"></div>
+
+<!-- Cart Notification -->
+<div x-show="$store.ui.cartNotificationVisible"
+     x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0 transform translate-y-2"
+     x-transition:enter-end="opacity-100 transform translate-y-0"
+     x-transition:leave="transition ease-in duration-200"
+     x-transition:leave-start="opacity-100 transform translate-y-0"
+     x-transition:leave-end="opacity-0 transform translate-y-2"
+     class="fixed top-20 right-4 bg-green-500 text-white p-4 shadow-lg z-50 max-w-sm">
+    <div class="flex items-center space-x-3">
+        <svg class="h-6 w-6">
+            <use xlink:href="#icon-check"></use>
+        </svg>
+        <span class="font-medium">Product added to cart!</span>
     </div>
 </div>
 
-<!-- Database and App logic -->
-<script src="js/database.js"></script>
+<!-- Loading Indicator -->
+<div x-show="loading"
+     x-transition:enter="transition ease-out duration-200"
+     x-transition:enter-start="opacity-0"
+     x-transition:enter-end="opacity-100"
+     x-transition:leave="transition ease-in duration-200"
+     x-transition:leave-start="opacity-100"
+     x-transition:leave-end="opacity-0"
+     class="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-3">
+        <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+        <span class="text-gray-700 font-medium">Loading...</span>
+    </div>
+</div>
+
+<!-- JavaScript Files - Load in correct order -->
+<script src="js/products.js"></script>
+<script src="js/categories.js"></script>
 <script src="js/app.js"></script>
+<script src="js/components.js"></script>
+<script src="js/products-page.js"></script>
+<script src="js/product-page.js"></script>
+<script src="js/cart-page.js"></script>
+<script src="js/spa-router.js"></script>
+
 </body>
 </html>
